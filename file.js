@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function appendMessage(sender, message) {
     const messageElement = document.createElement("div");
     messageElement.classList.add("message", sender);
-    message.textContent = message;
+    messageElement.textContent = message;
     botMessages.appendChild(messageElement);
     botMessages.scrollTop = botMessages.scrollHeight;
   }
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: userMessage }],
-          max_completion_tokens: 150,
+          max_tokens: 150,
         }),
       });
 
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       appendMessage("bot", botMessage);
     } catch (error) {
       console.error("Error fetching bot response:", error);
-      appendMessage("bot", "Soory, something went wrong. Please try again.");
+      appendMessage("bot", "Sorry, something went wrong. Please try again.");
     }
   }
 });
